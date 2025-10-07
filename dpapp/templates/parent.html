@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f4f9fc;
+      }
+
+      /* Header */
+      .header {
+        background: linear-gradient(135deg, #0d6efd, #20c997);
+        color: white;
+        padding: 40px 0;
+        font-size: 2rem;
+        font-weight: bold;
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+      }
+
+      /* Navbar */
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+      .navbar .nav-link {
+        font-weight: 500;
+      }
+      .navbar .nav-link:hover {
+        color: #0d6efd !important;
+        transform: scale(1.05);
+        transition: 0.2s;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: url("{% static 'images/img.jpg' %}") center/cover no-repeat;
+        border-radius: 15px;
+        padding: 80px 20px;
+        text-align: center;
+        color: white;
+        box-shadow: 0px 6px 15px rgba(0,0,0,0.3);
+        position: relative;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 77, 128, 0.55);
+        border-radius: 15px;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: bold;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      /* Feature Cards */
+      .feature-card {
+        background: #fff;
+        border: none;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        transition: 0.3s;
+      }
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      }
+      .feature-card i {
+        font-size: 3rem;
+        color: #0d6efd;
+        margin-bottom: 15px;
+      }
+
+      /* Footer */
+      .footer {
+        color: white;
+        padding: 15px 10px;
+        text-align: center;
+      }
+      .footer-left {
+        background: #0d6efd;
+      }
+      .footer-right {
+        background: #198754;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      
+      <!-- Header -->
+      <div class="row header text-center">
+        <div class="col-sm-12">
+          🩺 Disease Prediction System
+        </div>
+      </div>
+
+      <!-- Navbar -->
+      <div class="row mt-2">
+        <div class="col-sm-12">
+          <nav class="navbar navbar-expand-lg bg-white rounded-3">
+            <div class="container-fluid">
+              <a class="navbar-brand fw-bold text-primary" href="{% url 'index' %}"><i class="bi bi-hospital"></i> DPS</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item"><a class="nav-link active" href="{% url 'index' %}">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'prediction' %}">Disease Prediction</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'fprediction' %}">Prediction by File</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'history' %}">History</a></li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search"/>
+                  <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Hero Section -->
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <div class="hero">
+            <div class="hero-content">
+              <h1>Your Health, Our Priority</h1>
+              <p>Predict diseases early with AI-powered analysis of symptoms & reports.</p>
+              <a href="{% url 'prediction' %}" class="btn btn-light btn-lg mt-3">
+                <i class="bi bi-heart-pulse"></i> Start Prediction
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="row mt-5 text-center">
+        <div class="col-md-4 mb-3">
+          <div class="feature-card">
+            <i class="bi bi-clipboard-heart"></i>
+            <h5>Symptom Checker</h5>
+            <p>Enter your symptoms and get instant AI-driven predictions.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="feature-card">
+            <i class="bi bi-file-medical"></i>
+            <h5>Report Analysis</h5>
+            <p>Upload medical reports (CSV/Excel) for detailed predictions.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="feature-card">
+            <i class="bi bi-clock-history"></i>
+            <h5>History Records</h5>
+            <p>Track your past predictions and maintain your health records.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <div class="content">
+            {% block body %}
+            <h3 class="text-center text-primary mb-4">Welcome to the Future of Healthcare</h3>
+            <p class="text-muted text-center">
+              Our AI-driven system helps you take charge of your health. Use it responsibly and consult a doctor for final confirmation.
+            </p>
+            {% endblock body %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="row mt-4">
+        <div class="col-sm-6 footer footer-left">
+          © 2025 Disease Prediction System
+        </div>
+        <div class="col-sm-6 footer footer-right">
+          Developed by <b>Uday Kumar</b>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

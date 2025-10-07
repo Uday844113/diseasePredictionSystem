@@ -1,0 +1,40 @@
+{% extends "parent.html" %}
+{% block body %}
+  <h2 style="color: blue; text-align: center;">Prediction History</h2>
+  <table class="table table-bordered" style="width: 100%; margin: auto;">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Fever</td>
+        <td>Headache</td>
+        <td>Nausea</td>
+        <td>Vomiting</td>
+        <td>Fatigue</td>
+        <td>Joint Pain</td>
+        <td>Skin Rash</td>
+        <td>Cough</td>
+        <td>Weight Loss</td>
+        <td>Yellow Eyes</td>
+        <td>Disease</td> 
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in his %}
+        <tr>
+          <td>{{ record.id }}</td>
+          <td>{{ record.fever }}</td>
+          <td>{{ record.headache }}</td>
+          <td>{{ record.nausea }}</td>
+          <td>{{ record.vomiting }}</td>
+          <td>{{ record.fatigue }}</td>
+          <td>{{ record.joint_pain }}</td>
+          <td>{{ record.skin_rash }}</td>
+          <td>{{ record.cough }}</td>
+          <td>{{ record.weight_loss }}</td>  
+          <td>{{ record.yellow_eyes }}</td>
+          <td>{{ record.res }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock body %}
